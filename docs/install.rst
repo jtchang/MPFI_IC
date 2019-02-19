@@ -50,7 +50,8 @@ Once git is installed, pull down a local copy.
 
 .. code-block:: bash
 
-   $ git clone https://github.com/jtchang/fleappy
+   $ git clone https://github.com/jtchang/MPFI_IC.git
+
 
 If you are not comfortable using git from the command line there are a number of graphical alternatives that you may want to try including but not limited to: `Git Kraken`_, `GitHub Desktop`_, and `others`_. In addition you can manage GIT repositories in the text editors `VSCode`_ and `Atom`_. If you are new to GIT, there are numerous tutorials online, but a nice non-code heavy tutorial is `Git and Github for Poets`_.
 
