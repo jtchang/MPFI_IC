@@ -1,4 +1,7 @@
 # FLEAPPy
+
+[![Join the chat at https://gitter.im/MPFI_IC/community](https://badges.gitter.im/MPFI_IC/community.svg)](https://gitter.im/MPFI_IC/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <i><b>F</b>itzpatrick <b>L</b>ab <b>E</b>xperiment <b>A</b>nalysis <b>P</b>ipeline in <b>Py</b>thon </i>
 
 A modular framework for the analysis of experiment data neuroscience experiments.
