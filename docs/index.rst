@@ -6,7 +6,7 @@ fleappy User Guide and Documentation
 
 |ModularPipe|
 
-.. |ModularPipe| image:: images/modularpipe.png
+.. |ModularPipe| image:: images/ModularPipe.png
 
 The goal of this project was to develop a modular pipeline for the analysis of calcium imaging data. The project is structured so that novice users can interact at a high level using simple function calls, while more experience programmers can interact and augment lower level functionality.
 

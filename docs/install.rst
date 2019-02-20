@@ -4,8 +4,7 @@ Installation
 Setting Up Python
 =================
 To get started you will need to have Python 3.7 installed on your system.
-Using a virtual environment and package manager (such as conda or virtualenv) is
-strongly suggested to manage both your python version and packages. 
+Using a virtual environment and package manager (such as conda or virtualenv) is strongly suggested to manage both your python version and packages. `Anaconda`_ is an easy way to get started with conda and scientific python.
 
 For example using conda, you would create a virtual environment by running:
 
@@ -26,8 +25,7 @@ On Windows:
 .. note::
    Make sure that when you open a terminal or new notebook that you are running in your virtual environment.
 
-In order to interact with your data, it is suggested that you use Jupyter Notebooks, 
-which can be installed in conda by running:
+In order to interact with your data, it is suggested that you use Jupyter Notebooks, which can be installed in conda by running:
 
 .. code-block:: bash
 
@@ -43,8 +41,7 @@ Clone from Github
 
 .. |GIT| image:: https://imgs.xkcd.com/comics/git.png
 
-Now that you have a python environment setup, you will need to get a copy of fleappy. It is again suggested that you use `git`_ version control to 
-pull a local copy from the github repo. 
+Now that you have a python environment setup, you will need to get a copy of fleappy. It is again suggested that you use `git`_ version control to pull a local copy from the github repo. 
 
 Once git is installed, pull down a local copy.
 
@@ -133,3 +130,4 @@ If you edit files within fleappy, you can run the above commands to update the d
 .. _GitHub Desktop: https://desktop.github.com/
 .. _Git and Github for Poets: https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV
 .. _Sphinx: http://www.sphinx-doc.org/en/master/
+.. _Anaconda: https://www.anaconda.com/distribution
