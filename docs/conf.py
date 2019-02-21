@@ -46,6 +46,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.todo',
     'sphinx.ext.intersphinx',
+    'sphinxcontrib.apidoc',
     'nbsphinx'
 ]
 
@@ -218,3 +219,10 @@ intersphinx_mapping = {
     'scipy': ('https://docs.scipy.org/doc/scipy/reference/', None),
     'pandas': ('https://pandas.pydata.org/pandas-docs/stable/', None)
 }
+
+
+# SphinxContrib.apidoc mappings
+apidoc_module_dir = '../fleappy'
+apidoc_output_dir = 'source'
+apidoc_excluded_paths = ['tests']
+apidoc_separate_modules = True

@@ -88,7 +88,6 @@ First we will automatically generate the documentation of the api, then we will 
 .. code-block:: bash
 
     cd docs
-    sphinx-apidoc -f -o  source ../fleappy
     make html
 
 Now that the documentation is made you can serve the path docs/_build/html with a simple http server. Python has one of these built in:
