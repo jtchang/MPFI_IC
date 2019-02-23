@@ -149,7 +149,8 @@ For this example we'll use semi-automated segmentation using the `cellMagicWand`
 
 .. admonition:: Exercise
 
-    Open up one of your registered image series and select ROIs in ImageJ using cellMagicWand. You may need to alter the look up table (LUT) in order to see the ROI. In ImageJ this can be done by going to *Image>Adjust>Brightness/Contrast*.
+    Open up one of your registered image series and select ROIs in ImageJ using cellMagicWand. You may find it useful to select rois using a z-projection image (*Image>Stacks>Z Project*) or a grouped z-projection (*Image>Stacks>Tools>Grouped Z Project...*).
+
 
 Once you have saved your ROIs as a zip file, we can bring them into python. The :mod:`roimanager.imagejroi` wraps the python package `read-roi`_ and provides useful methods to extract your ImageJ roi into numpy arrays, tifs, or other useful storage types.
 
@@ -162,7 +163,8 @@ First lets convert the zip file or ImageJ ROIs to a tiff stack of ROI masks. By 
 
 .. admonition:: Exercise
 
-    Find and open the tif file of cell masks generated from the ROIs you selected in ImageJ. Compare them to the ROIs you selected in ImageJ.
+    Find and open the tif file of cell masks generated from the ROIs you selected in ImageJ. Compare them to the ROIs you selected in ImageJ. You may need to alter the look up table (LUT) in order to see the ROI. In ImageJ this can be done by going to *Image>Adjust>Brightness/Contrast*.
+
 
 Data Loading/Extraction
 =======================
