@@ -188,7 +188,7 @@ Let's start by plotting the ROIs. To distinguish adjacent ROIs we will assign a 
     import matplotlib.pyplot as plt
     import numpy as np
 
-    roi_image = np.zeros((512,512))
+    roi_image = np.zeros((512,512,3))
     for roi in myExpt.roi:
         random_color = np.random.rand(1,1,3)
         mask = np.tile(roi.mask.todense(), (1,1,3))
@@ -196,7 +196,7 @@ Let's start by plotting the ROIs. To distinguish adjacent ROIs we will assign a 
 
     # show the ROIs
     import matplotlib.pyplot as plt
-    fig, ax = plt.add_subplots()
+    fig, ax = plt.add_subplot()
     _ = ax.imshow(roi_image)
 
 You should see an output that looks like this:
@@ -215,7 +215,7 @@ The raw fluorescence signal is stored in a field labeled 'rawF'. Let us plot our
     # plot the fluorescence time series
     times, tseries = myExpt.get_tseries(1, 'rawF') 
     _ = ax.plot(times, tseries)
-    _ = ax.set_ylabel('Raw Fluorescence (a.u.))
+    _ = ax.set_ylabel('Raw Fluorescence (a.u.)')
     _ = ax.set_xlabel('Time (s)')
 
 |rawF|
