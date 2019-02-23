@@ -35,9 +35,9 @@ To register images we will first create a :class:`imgregistration.imgregistratio
     imreg = ImageRegistration()
     print(vars(imreg))
 
-Notice that one of the attributes is call `_reg_function`. This is the module that will be used to perform image registration with this object. Currently b :mod:`fleappy` uses `OpenCV`_ template matching (`cv2.matchTemplate`) by default which is contained in :mod:`imgregistration.templatematching`.
+Notice that one of the attributes is call `_reg_module`. This is the module that will be used to perform image registration with this object. Currently b :mod:`fleappy` uses `OpenCV`_ template matching (`cv2.matchTemplate`) by default which is contained in :mod:`imgregistration.templatematching`.
 
-Next we'll give a directory that contains as series of .tif files to align that starts with some basename (e.g. 'myAwesomeImages_1.tif', 'myAwesomeImages_2.tif', etc.). 
+Next we'll give a directory that contains as series of .tif files to align that starts with some basename (e.g. 'myAwesomeImages_1.tif', 'myAwesomeImages_2.tif', etc.). In the provided sample data you will need to provide the full file path to the folder 'SampleData'. The basename for the example data is 't00001'. 
 
 .. code-block:: python
 
