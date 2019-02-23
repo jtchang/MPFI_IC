@@ -37,7 +37,7 @@ To register images we will first create a :class:`imgregistration.imgregistratio
 
 Notice that one of the attributes is call `_reg_module`. This is the module that will be used to perform image registration with this object. Currently b :mod:`fleappy` uses `OpenCV`_ template matching (`cv2.matchTemplate`) by default which is contained in :mod:`imgregistration.templatematching`.
 
-Next we'll give a directory that contains as series of .tif files to align that starts with some basename (e.g. 'myAwesomeImages_1.tif', 'myAwesomeImages_2.tif', etc.). In the provided sample data you will need to provide the full file path to the folder 'SampleData'. The basename for the example data is 't00001'. 
+Next we'll give a directory that contains as series of .tif files to align that starts with some file-base-name (e.g. 'myAwesomeImages_1.tif', 'myAwesomeImages_2.tif', etc.). In the provided sample data you will need to provide the full file path to the folder 'SampleData'. The basename for the example data is 't00001'. 
 
 .. code-block:: python
 
@@ -149,7 +149,7 @@ For this example we'll use semi-automated segmentation using the `cellMagicWand`
 
 .. admonition:: Exercise
 
-    Open up one of your registered image series and select ROIs in ImageJ using cellMagicWand
+    Open up one of your registered image series and select ROIs in ImageJ using cellMagicWand. You may need to alter the look up table (LUT) in order to see the ROI. In ImageJ this can be done by going to *Image>Adjust>Brightness/Contrast*.
 
 Once you have saved your ROIs as a zip file, we can bring them into python. The :mod:`roimanager.imagejroi` wraps the python package `read-roi`_ and provides useful methods to extract your ImageJ roi into numpy arrays, tifs, or other useful storage types.
 
