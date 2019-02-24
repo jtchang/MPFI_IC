@@ -15,7 +15,7 @@ You can now make new python 3 notebook to work in. If you are unfamiliar with Ju
 
 |jupyternotebook|
 
-.. |jupyternotebook| :: images/JupyterNotebook.png
+.. |jupyternotebook| image:: images/JupyterNotebook.png
 
 Motion Correction - Image Registration
 ======================================
