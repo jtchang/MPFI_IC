@@ -65,14 +65,18 @@ Fleappy is organized to be distributed as a PYPI package. In order to install fl
 Configuration
 -------------
 
-Fleappy makes use of a .env file for user specific configuration. Make a copy and rename sample.env to .env. Two configuration settings are currently supported. The pushbullet api key, which allows for Pushbullet notifications which are useful when running large batch scripts. After signing up for an account, this api key can be obtained from `api_key`_. 
+Fleappy makes use of a .env file for user specific configuration. In the folder you cloned from Github, find the file named 'sample.env', make a copy of it, and rename the copy to '.env'. Two configuration settings are currently supported. The pushbullet api key, which allows for Pushbullet notifications which are useful when running large batch scripts. After signing up for an account, this api key can be obtained from `api_key`_. 
 
-The second important field is the path to stimulus descriptions. A default file containing stimulus definitions can be found in the fleappy root directory (stim-config.json). The absolute path to this file should be placed in the .env. file.
+The second important field is the path to stimulus descriptions. A default file containing stimulus definitions can be found in the fleappy root directory (stim_defs.json). The absolute path to this file should be placed in the .env file (e.g. 'MYREPOSITORY/stim_defs.json').
+
+.. Note:: 
+
+    If you are on windows, you may run into problems using '\' in your paths. You should be able to substitute them with '/' without any issues.
 
 .. code-block:: python
 
     PUSHBULLET_API_KEY = '<YOUR API KEY HERE>'
-    STIM_DEFINITIONS = 'ABSOLUTE_PATH_TO_STIM_DEFINITIONS'
+    STIM_DEFINITIONS = 'ABSOLUTE_PATH_TO_STIM_DEFINITIONS_FILE'
 
 
 Documentation
