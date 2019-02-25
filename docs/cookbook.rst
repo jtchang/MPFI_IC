@@ -6,7 +6,16 @@ Cookbook
 .. |pipeline| image:: https://imgs.xkcd.com/comics/data_pipeline.png
 
 
-This section is meant as a primer for a workflow to analyze two-photon imaging or neuronal populations. If you would like to follow along, we suggest running code snippets in a `Jupyter`_ notebook.
+This section is meant as a primer for a workflow to analyze two-photon imaging or neuronal populations. If you would like to follow along, we suggest running code snippets in a `Jupyter`_ notebook. To open a Jupyter notebook run the following command in your command line/prompt from the directory you downloaded the sample data to:
+
+.. code-block:: shell
+    jupyter notebook
+
+You can now make new python 3 notebook to work in. If you are unfamiliar with Jupyter Notebook there a many tutorials available online including the official `Jupyter Documentation`_. 
+
+|jupyternotebook|
+
+.. |jupyternotebook| image:: images/JupyterNotebook.png
 
 Motion Correction - Image Registration
 ======================================
@@ -538,4 +547,4 @@ Now you have stepped through the simplest pathway for analysis fluorescent time 
 .. _ScanImage: http://scanimage.vidriotechnologies.com/display/SIH/ScanImage
 .. _PsychoPy: https://www.psychopy.org/
 .. _Spike2: http://ced.co.uk/products/spkovin
-
+.. _Jupyter Documentation: https://jupyter-notebook.readthedocs.io/en/stable/

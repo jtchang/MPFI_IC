@@ -4,7 +4,12 @@ Support
 Getting Help
 ------------
 
-The easiest way to get help with the project is to join the 
+The easiest way to get help with the project is to join the gitter chat room |gitter|. 
+
+.. |gitter| image:: https://badges.gitter.im/MPFI_IC/community.svg
+   :alt: Join the chat at https://gitter.im/MPFI_IC/community
+   :target: https://gitter.im/MPFI_IC/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
 
 The other good way is to open an issue on Github.
 
