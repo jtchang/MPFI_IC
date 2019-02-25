@@ -131,7 +131,8 @@ class ImageRegistration:
                 if file_num > len(files):
                     break
                 logging.info('Loading... %s', files[file_num].name)
-                file_stack = io.imread(files[file_num])
+                file_stack, _ = scanimage.read_si_tiffstack(
+                    files[file_num], header_only=False)
                 if len(tif_stack) is not 0:
                     tif_stack = np.concatenate((tif_stack, file_stack), axis=0)
                 else:
