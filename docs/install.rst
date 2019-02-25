@@ -71,14 +71,15 @@ The second important field is the path to stimulus descriptions. A default file 
 
 .. Note:: 
 
-    If you are on windows, you may run into problems using '\' in your paths. You should be able to substitute them with '/' without any issues.
+    If you are on windows, you may run into problems using '\\' in your paths. You should be able to substitute them with '/' without any issues.
 
 .. code-block:: python
 
     PUSHBULLET_API_KEY = '<YOUR API KEY HERE>'
     STIM_DEFINITIONS = 'ABSOLUTE_PATH_TO_STIM_DEFINITIONS_FILE'
 
-.. Note:: 
+
+.. Note::
 
     In Windows you may get an error message 'You must type a file name' if you try to rename the file in explorer. You make a copy and rename 'sample.env' by opening and saving as '.env' in any text editor.
 
