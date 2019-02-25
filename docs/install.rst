@@ -74,6 +74,9 @@ The second important field is the path to stimulus descriptions. A default file 
     PUSHBULLET_API_KEY = '<YOUR API KEY HERE>'
     STIM_DEFINITIONS = 'ABSOLUTE_PATH_TO_STIM_DEFINITIONS'
 
+.. Note:: 
+
+    In Windows you may get an error message 'You must type a file name' if you try to rename the file in explorer. You make a copy and rename 'sample.env' by opening and saving as '.env' in any text editor.
 
 Documentation
 -------------
