@@ -13,4 +13,4 @@ natsort==5.5.0
 pandas==0.23.4
 nbsphinx==0.4.2
 sphinxcontrib-apidoc==0.3.0
-tiffile==2019.2.22
+tifffile==2019.2.22
