@@ -11,12 +11,13 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 import skimage.io as io
+import tifffile
 
 
 def read_si_tiffstack(path_name: str, header_only: bool = False) -> tuple:
     """Open a scanimage tiff file
 
-    Reads header data using PIL and tiff image data using scikit-image. 
+    Reads header data using PIL and tiff image data using scikit-image.
 
     Todo:
         Using two libraries is inefficient, finding a single solution would be the best.
@@ -27,7 +28,6 @@ def read_si_tiffstack(path_name: str, header_only: bool = False) -> tuple:
     Returns:
         tuple: Image Data (numpy.ndarray (z,y,x)), header (dict)
     """
-
     # convert any windows style
     if not isinstance(path_name, Path):
         file_to_open = Path(path_name)
@@ -35,10 +35,14 @@ def read_si_tiffstack(path_name: str, header_only: bool = False) -> tuple:
         file_to_open = path_name
     assert file_to_open.exists(), 'File does not exist!'
 
-    img = Image.open(file_to_open)
-    header = parse_si_header(img.tag.tagdata)
+    img = tifffile.TiffFile(file_to_open)
+    if img.is_bigtiff:
+        header = parse_si_header(img.scanimage_metadata['FrameData'])
+    else:
+        header = parse_si_header(img.scanimage_metadata['Description'])
+
     if not header_only:
-        img_data = io.imread(file_to_open)
+        img_data = img.asarray()
     else:
         img_data = None
     return img_data, header
@@ -56,7 +60,7 @@ def parse_si_header(header) -> dict:
 
     assert isinstance(header, str) or isinstance(header, dict), 'Please provide a str or dict!'
     if isinstance(header, str):
-        return _parse_string(header)
+        raise NotImplementedError("No longer supports parsing of strings, use tifffile instead")
     elif isinstance(header, dict):
         return _parse_dict(header)
     return None
@@ -73,61 +77,29 @@ def to_json(header: dict, filename: str):
         json.dump(header, fid)
 
 
-def _parse_dict(header: dict) -> dict:
-    """ Parse Scanimage header from dict_input.
+def _parse_dict(header: dict) ->dict:
+    """Makes header information consistent between scanimage file version 1 and 3.
 
-    Pulls the Scanimage headings from tiff tags which returned as a dict_input. One of the values in the dict_input 
-    should be a Scanimage header as a string. Returns None if a header can not be found.
-
-    Args:
-        header (dict): Scanimage header in a dict_input.
-
-    Returns:
-        dict: Parsed ScanImage header.
-    """
-
-    for entry in header.values():
-        if b'SI' in entry:
-            return _parse_string(entry.decode('ASCII'))
-    return None
-
-
-def _parse_string(header: str)->dict:
-    """ Parse Scanimage header from string.
-
-    Parses a string which contains Scanimage header data. Each line is a different property (broken by the newline). 
-    If no information can be parsed from the string, it will return None.
+    Strips the scanimage tag from header information for consistency
 
     Args:
-        header (str): Scanimage header as a string.
+        header (dict): header information from tifffile.scanimage_metadata
 
     Returns:
-        dict: Scanimage header as a dict
+        dict: rectified header information
     """
-    header_parsed = dict()
-    for row in header.split('\n'):
-
-        row_entries = row.split('=')
-        if len(row_entries) > 1:
-            rowKeys = row_entries[0]
-            rowVal = row_entries[1]
-            row_dict = _recursive_key(header_parsed, rowKeys.split('.'), rowVal.strip())
-            header_parsed = {**header_parsed, **row_dict}
-
-    return header_parsed if header_parsed else None
+    new_dict = {}
+    for key, val in header.items():
+        all_keys = key.split('.')
+        if all_keys[0] == 'scanimage':
+            new_key = ('.').join(all_keys[1:])
+        else:
+            new_key = key
+        new_dict[new_key] = val
+    return new_dict
 
 
-def _recursive_key(dict_input, keylist, value):
-    if len(keylist) == 1:
-        dict_input[keylist[0].strip()] = value
-        return dict_input
-    if keylist[0] not in dict_input.keys():
-        dict_input[keylist[0].strip()] = dict()
-    dict_input[keylist[0].strip()] = _recursive_key(dict_input[keylist[0]], keylist[1:], value)
-    return dict_input
-
-
-def si_version(header: dict):
+def si_version(header: dict)->str:
     """Returns SI version.
 
     Todo:
@@ -135,7 +107,19 @@ def si_version(header: dict):
     Args:
         header (dict): Header information as dict
     """
-    return header['scanimage']['SI']['VERSION_MAJOR']
+    return header['SI.VERSION_MAJOR']
+
+
+def si_file_version(header: dict)->int:
+    """Returns the tif file type from scanimage.
+
+    Args:
+        header (dict): cleansed scanimage header information
+
+    Returns:
+        int: tiff formate type
+    """
+    return header['SI.TIFF_FORMAT_VERSION']
 
 
 def piezo_slices(header: dict) -> int:
@@ -149,14 +133,14 @@ def piezo_slices(header: dict) -> int:
     Returns:
         int: Number of piezo planes.
     """
-
-    if si_version(header) == '2015':
-        if header['scanimage']['SI']['hFastZ']['enable'] is 1:
-            return int(header['scanimage']['SI']['hFastZ']['numFramesPerVolume'])
+    file_version_num = si_file_version(header)
+    if file_version_num == 1 or file_version_num == 3:
+        if header['SI.hFastZ.enable'] is 1:
+            return int(header['SI.hFastZ.numFramesPerVolume'])
         else:
             return 1
     else:
-        raise ValueError('Only parsing for Scanimage 2015 is available at the moment')
+        raise ValueError('Only parsing for Scanimage 2015 & 2018a is available at the moment')
 
 
 def channels(header: dict)-> np.array:
@@ -171,9 +155,9 @@ def channels(header: dict)-> np.array:
     Returns:
         np.array: List of active channels.
     """
-
-    if si_version(header) == '2015':
-        channel_list = header['scanimage']['SI']['hChannels']['channelSave']
+    file_version_num = si_file_version(header)
+    if file_version_num == 1 or file_version_num == 3:
+        channel_list = str(header['SI.hChannels.channelSave'])
         channel_list = ''.join(x for x in channel_list if x not in '[]')
         return np.fromstring(channel_list, dtype=int, sep=';')
     else:
@@ -193,7 +177,10 @@ def frames_per_file(header: dict) -> int:
         int: Number of frames per file.
     """
 
-    if si_version(header) == '2015':
-        return int(header['scanimage']['SI']['hResScan']['logFramesPerFile'])
+    file_version_num = si_file_version(header)
+    if file_version_num == 1:
+        return int(header['SI.hResScan.logFramesPerFile'])
+    elif file_version_num == 3:
+        return int(header['SI.hScan2D.logFramesPerFile'])
     else:
-        raise ValueError('Only parsing for Scanimage 2015 is available at the moment')
+        raise ValueError('Only parsing for Scanimage 2015 & 2018a is available at the moment')
