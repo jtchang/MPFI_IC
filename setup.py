@@ -13,7 +13,7 @@ setup(
     author='Jeremy T. Chang',
     author_email='jeremy.chang@mpfi.org',
     url='https://github.com/jtchang/MPFI_IC',
-    packages=['fleappy.notifications', 'fleappy.tiffread', 'fleappy.imgregistration', 'fleappy.experiment', 'fleappy.roimanager', 'fleappy.metadata', 'fleappy.imageviewer', 'fleappy.analysiis'],
+    packages=['fleappy.notifications', 'fleappy.tiffread', 'fleappy.imgregistration', 'fleappy.experiment', 'fleappy.roimanager', 'fleappy.metadata', 'fleappy.imageviewer', 'fleappy.analysis'],
     install_requires=required,
     long_description='See ' + 'https://mpif-ic.readthedocs.io',
     license='MIT',
