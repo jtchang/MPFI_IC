@@ -6,7 +6,9 @@ Setting Up Python
 To get started you will need to have Python 3.7 installed on your system.
 Using a virtual environment and package manager (such as conda or virtualenv) is strongly suggested to manage both your python version and packages. `Anaconda`_ is an easy way to get started with conda and scientific python.
 
-For example using conda, you would create a virtual environment by running:
+.. Note::
+
+    At the moment the lastest Anaconda for Windows installer (v5.0.1) is not performing a complete installation, if you can not use an older installer you can try this `Anaconda work around`_ which involves installing `Miniconda`_.
 
 .. code-block:: bash
 
@@ -138,3 +140,5 @@ If you edit files within fleappy, you can run the above commands to update the d
 .. _Git and Github for Poets: https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV
 .. _Sphinx: http://www.sphinx-doc.org/en/master/
 .. _Anaconda: https://www.anaconda.com/distribution
+.. _Anaconda work around: http://docs.anaconda.com/anaconda/user-guide/troubleshooting/#cannot-open-anaconda-prompt-after-installation
+.. _Miniconda: https://docs.conda.io/en/latest/miniconda.html
