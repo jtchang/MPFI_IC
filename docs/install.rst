@@ -1,6 +1,10 @@
 Installation
 ############
 
+.. Note::
+
+    Before getting started you may want to familiarize yourself with common commands in the terminal/command prompt. There are several good online resources and videos that can get you up to speed. I will provide some here soon-ish.
+
 Setting Up Python
 =================
 To get started you will need to have Python 3.7 installed on your system.
